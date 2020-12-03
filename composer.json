@@ -1,0 +1,17 @@
+{
+  "name": "pinguo/config-center-sdk",
+  "description": "config center php sdk",
+  "type": "library",
+  "authors": [
+    {
+      "name": "guzhongzhi",
+      "email": "guzhongzhi@camera360.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "PGConfig\\": "src/"
+    }
+  }
+}
