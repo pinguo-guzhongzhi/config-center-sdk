@@ -1,6 +1,7 @@
 {
   "name": "pinguo-guzhongzhi/config-center-sdk",
   "description": "config center php sdk",
+  "comment": "bower-asset has problem, we can not use it, but it was used by the PGWireless/lib-compatible",
   "type": "library",
   "authors": [
     {
