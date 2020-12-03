@@ -13,5 +13,8 @@
     "psr-4": {
       "PGConfig\\": "src/"
     }
-  }
+  },
+  "bin": [
+    "pg-config-dog"
+  ]
 }
