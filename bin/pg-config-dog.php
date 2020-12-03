@@ -20,5 +20,5 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 use Symfony\Component\Console\Application;
 
 $application = new Application();
-$application->add(new \PGConfig\console\Config());
+$application->add(new \PGConfig\Console\Config());
 $application->run();

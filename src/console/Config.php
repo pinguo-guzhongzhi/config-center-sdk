@@ -6,7 +6,7 @@
  * Time: 11:39 AM
  */
 
-namespace PGConfig\console;
+namespace PGConfig\Console;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
