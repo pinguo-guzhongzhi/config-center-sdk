@@ -16,6 +16,7 @@ class Client
 {
     const API_URL_QA   = "https://api-qa.camera360.com/";
     const API_URL_PROD = "https://micro-api.camera360.com/";
+    const API_URL_DEV  = "http://localhost:8100/";
 
     const ENV_QA   = "qa";
     const ENV_PROD = "prod";
@@ -40,12 +41,21 @@ class Client
                 $url = self::API_URL_PROD;
                 break;
             case self::ENV_DEV:
-                throw new \Exception("no url for dev env, please use NewInstanceApiByUrl to create the instance");
+                $url = self::API_URL_DEV;
+                break;
             default:
                 throw new \Exception("invalid env");
         }
         $ins = new self($clientId, $sec, $env, $url);
         return $ins;
+    }
+
+    /**
+     * @param $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 
     /**
@@ -116,8 +126,14 @@ class Client
     {
         $data = [];
         foreach ($this->data as $key => $value) {
+            $key  = trim($key);
             $temp = explode(".", $key);
-            $this->setValue($data, $temp, $value);
+            try {
+                $this->setValue($data, $temp, $value);
+            } catch (\Exception $ex) {
+                echo $ex->__toString();
+                exit(1);
+            }
         }
         unset($data["security"], $data["micro"]);
         return $data;
@@ -164,14 +180,15 @@ class Client
             "Client-Id" => $this->clientId,
         ];
 
-        $url    = $this->url . "config/config/list";
+        $url    = rtrim($this->url, "/") . "/config/config/list";
         $client = new GuzzleHttpClient([
             'timeout' => 10,
         ]);
-        $rsp    = $client->get($url, [
+        echo $url, PHP_EOL;
+        $rsp  = $client->get($url, [
             "headers" => $headers,
         ]);
-        $body   = $rsp->getBody();
+        $body = $rsp->getBody();
         if ($body == "") {
             throw new \Exception("request to config center failure: " . $url);
         }
