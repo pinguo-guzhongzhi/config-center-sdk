@@ -42,13 +42,13 @@ class ToFile extends Command
             $str = "";
             switch ($type) {
                 case "php":
-                    $str = var_export($ins->toArray(), true);
+                    $str = "<?php" . PHP_EOL . "return " . var_export($ins->toArray(), true) . ";" . PHP_EOL;
                     break;
                 case "json":
-                    $str = json_encode($ins->toDotKeyMap());
+                    $str = json_encode($ins->toDotKeyMap(), JSON_PRETTY_PRINT);
                     break;
                 case "map-php":
-                    $str = var_export($ins->toDotKeyMap(), true);
+                    $str = "<?php" . PHP_EOL . "return " . var_export($ins->toDotKeyMap(), true) . ";" . PHP_EOL;
                     break;
                 default:
                     throw new \Exception("invalid type");
