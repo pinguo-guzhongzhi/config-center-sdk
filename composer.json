@@ -8,7 +8,16 @@
       "email": "guzhongzhi@camera360.com"
     }
   ],
-  "require": {},
+  "repositories": {
+    "lib-compatible": {
+      "type": "vcs",
+      "url": "https://github.com/PGWireless/lib-compatible"
+    }
+  },
+  "require": {
+    "PGWireless/lib-compatible": "dev-ali-master",
+    "symfony/console": "^3.4"
+  },
   "autoload": {
     "psr-4": {
       "PGConfig\\": "src/"
@@ -16,5 +25,19 @@
   },
   "bin": [
     "bin/pg-config-dog"
-  ]
+  ],
+  "replace": {
+    "bower-asset/jquery": "*",
+    "bower-asset/inputmask": "*",
+    "bower-asset/jquery.inputmask": "*",
+    "bower-asset/punycode": "*",
+    "bower-asset/yii2-pjax": "*"
+  },
+  "conflict": {
+    "bower-asset/jquery": "*",
+    "bower-asset/inputmask": "*",
+    "bower-asset/jquery.inputmask": "*",
+    "bower-asset/punycode": "*",
+    "bower-asset/yii2-pjax": "*"
+  }
 }
