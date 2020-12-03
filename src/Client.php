@@ -87,6 +87,11 @@ class Client
     protected $namespace;
 
     /**
+     * @var array
+     */
+    protected $data;
+
+    /**
      * Client constructor.
      *
      * @param string $clientId
@@ -103,16 +108,37 @@ class Client
         $this->namespace = "com.camera360.srv";
     }
 
-    public function loadConfig()
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
-        $keys = $this->loadRemoteConfig();
         $data = [];
-        foreach ($keys as $key => $value) {
+        foreach ($this->data as $key => $value) {
             $temp = explode(".", $key);
             $this->setValue($data, $temp, $value);
         }
         unset($data["security"], $data["micro"]);
         return $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function toDotKeyMap()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return bool
+     */
+    public function loadConfig()
+    {
+        $keys       = $this->loadRemoteConfig();
+        $this->data = $keys;
+        return true;
     }
 
     protected function setValue(&$data, $keyPath, $value)

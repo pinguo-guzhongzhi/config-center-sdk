@@ -21,4 +21,5 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new \PGConfig\Console\Config());
+$application->add(new \PGConfig\Console\ToFile());
 $application->run();
