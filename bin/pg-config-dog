@@ -1,3 +1,0 @@
-#!/usr/bin/env php
-<?php
-require dirname(__FILE__)."/pg-config-dog.php";
